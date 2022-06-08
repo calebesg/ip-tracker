@@ -6,3 +6,7 @@ body,
 input {
   @apply font-rubik;
 }
+
+body {
+  @apply bg-gray-200;
+}
