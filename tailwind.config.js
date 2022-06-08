@@ -1,7 +1,17 @@
 module.exports = {
-  content: ["./src/**/*.{html,js,ts,tsx}"],
+  content: ['./src/**/*.{html,js,ts,tsx}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        gray: {
+          400: 'hsl(0, 0%, 59%)',
+          800: 'hsl(0, 0%, 17%)',
+        },
+      },
+      fontFamily: {
+        rubik: ['Rubik', 'sans-serif'],
+      },
+    },
   },
   plugins: [],
 };
