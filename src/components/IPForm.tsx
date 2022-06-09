@@ -2,7 +2,7 @@ import iconArrow from '../assets/icon-arrow.svg';
 
 function IPForm() {
   return (
-    <form className="flex items-center h-14 max-w-lg w-full rounded-xl overflow-hidden translate-y-7">
+    <form className="flex items-center h-14 max-w-lg w-full rounded-xl overflow-hidden mt-7">
       <input
         type="text"
         aria-label="enter a ip address"
