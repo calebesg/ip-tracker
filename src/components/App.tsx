@@ -1,3 +1,4 @@
+import { LatLngExpression } from 'leaflet';
 import { useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import geolocation from '../apis/geolocation';
@@ -5,7 +6,7 @@ import geolocation from '../apis/geolocation';
 import Header from './Header';
 import ResultPanel from './ResultPanel';
 
-export type IPData = {
+export interface IPData {
   ip: string;
   isp: string;
   location: {
@@ -15,7 +16,7 @@ export type IPData = {
     lat: number;
     lng: number;
   };
-};
+}
 
 function App() {
   const [data, setData] = useState<IPData | null>(null);
@@ -28,18 +29,23 @@ function App() {
     setData(response.data);
   };
 
+  const getPosition = function (): LatLngExpression {
+    if (!data) return [-16.7435512, -51.52768];
+    return [data.location.lat, data.location.lng];
+  };
+
   return (
     <div className="min-h-screen grid grid-cols-1 grid-rows-3">
       <Header onSubmitForm={fetchIP} />
 
       <main className="row-span-2 relative">
         <div className="absolute z-10 w-full px-4 -translate-y-36 sm:-translate-y-1/2 transition-all">
-          <ResultPanel />
+          <ResultPanel info={data} />
         </div>
         <div className="w-full h-screen sm:h-full">
           <MapContainer
             zoom={17}
-            center={[-16.7435512, -51.52768]}
+            center={getPosition()}
             style={{ height: '100%', width: '100%', zIndex: 2 }}
           >
             <TileLayer
