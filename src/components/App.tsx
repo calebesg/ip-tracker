@@ -1,6 +1,6 @@
 import { LatLngExpression } from 'leaflet';
 import { useState } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
 import geolocation from '../apis/geolocation';
 
 import Header from './Header';
@@ -13,13 +13,14 @@ export interface IPData {
     country: string;
     region: string;
     timezone: string;
-    lat: number;
-    lng: number;
   };
 }
 
 function App() {
   const [data, setData] = useState<IPData | null>(null);
+  const [location, setLocation] = useState<LatLngExpression>([
+    -16.7435512, -51.52768,
+  ]);
 
   const fetchIP = async function (ip: string) {
     const response = await geolocation.get('/country,city', {
@@ -27,11 +28,7 @@ function App() {
     });
 
     setData(response.data);
-  };
-
-  const getPosition = function (): LatLngExpression {
-    if (!data) return [-16.7435512, -51.52768];
-    return [data.location.lat, data.location.lng];
+    setLocation([response.data.location.lat, response.data.location.lng]);
   };
 
   return (
@@ -45,7 +42,7 @@ function App() {
         <div className="w-full h-screen sm:h-full">
           <MapContainer
             zoom={17}
-            center={getPosition()}
+            center={location}
             style={{ height: '100%', width: '100%', zIndex: 2 }}
           >
             <TileLayer
@@ -54,6 +51,8 @@ function App() {
                 import.meta.env.VITE_MAPBOX_TOKEN
               }`}
             />
+
+            <Marker position={location} />
           </MapContainer>
         </div>
       </main>
