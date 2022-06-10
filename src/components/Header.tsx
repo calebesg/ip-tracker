@@ -1,4 +1,3 @@
-import ResultPanel from './ResultPanel';
 import IPForm from './IPForm';
 
 function Header() {
@@ -7,8 +6,6 @@ function Header() {
       <h1 className="text-white font-medium text-3xl">IP Address Tracker</h1>
 
       <IPForm />
-
-      <ResultPanel />
     </header>
   );
 }
