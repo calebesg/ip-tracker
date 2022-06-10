@@ -39,7 +39,7 @@ function ResultPanel() {
   };
 
   return (
-    <ul className="grid gap-4 grid-cols-1 grid-rows-4 sm:grid-cols-4 sm:grid-rows-1 max-w-6xl w-11/12 xl:w-full bg-white rounded-xl px-8 py-9 absolute bottom-0 translate-y-52 sm:translate-y-1/2">
+    <ul className="grid gap-4 grid-cols-1 grid-rows-4 sm:grid-cols-4 sm:grid-rows-1 max-w-6xl w-full bg-white rounded-xl px-8 py-9 mx-auto">
       {renderCard()}
     </ul>
   );
