@@ -39,14 +39,14 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen grid grid-cols-1 grid-rows-3">
+    <div className="min-h-screen">
       <Header onSubmitForm={fetchIP} />
 
-      <main className="row-span-2 relative">
-        <div className="absolute z-10 w-full px-4 -translate-y-36 sm:-translate-y-1/2 transition-all">
+      <main>
+        <div className="absolute top-44 sm:top-48 z-10 w-full px-4">
           <ResultPanel info={data} />
         </div>
-        <div className="w-full h-screen sm:h-full">
+        <div className="w-full h-screen">
           <MapContainer
             zoom={16}
             center={location}
