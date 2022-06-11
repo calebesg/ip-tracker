@@ -27,9 +27,9 @@ function Header({ onSubmitForm }: HeaderProps) {
           onChange={e => setIp(e.target.value)}
           aria-label="enter a ip address"
           placeholder="Search any a IP address or domain"
-          className="flex-1 h-full text-lg px-5"
+          className="flex-1 h-full text-lg px-5 cursor-pointer outline-none"
         />
-        <button className="bg-black flex items-center justify-center h-full w-14 text-lg">
+        <button className="bg-black flex items-center justify-center h-full w-14 text-lg hover:bg-gray-800 transition-all">
           <img src={iconArrow} alt="arrow right" />
         </button>
       </form>

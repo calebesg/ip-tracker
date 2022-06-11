@@ -20,7 +20,7 @@ export interface IPData {
 function App() {
   const [data, setData] = useState<IPData | null>(null);
   const [location, setLocation] = useState<LatLngExpression>([
-    -16.7435512, -51.52768,
+    40.7327763, -73.8396469,
   ]);
 
   const fetchIP = async function (ip: string) {
@@ -48,7 +48,7 @@ function App() {
         </div>
         <div className="w-full h-screen sm:h-full">
           <MapContainer
-            zoom={14}
+            zoom={16}
             center={location}
             style={{ height: '100%', width: '100%', zIndex: 2 }}
             scrollWheelZoom={false}
@@ -59,7 +59,7 @@ function App() {
                 import.meta.env.VITE_MAPBOX_TOKEN
               }`}
             />
-            <MapMarker position={location} />
+            {data && <MapMarker position={location} />}
           </MapContainer>
         </div>
       </main>
