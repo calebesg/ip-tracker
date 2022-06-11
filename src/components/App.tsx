@@ -1,10 +1,11 @@
+import { useState, useEffect } from 'react';
 import { LatLngExpression } from 'leaflet';
-import { useState } from 'react';
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
+import { MapContainer, Marker, TileLayer, useMapEvents } from 'react-leaflet';
 import geolocation from '../apis/geolocation';
 
 import Header from './Header';
 import ResultPanel from './ResultPanel';
+import MapMarker from './MapMarker';
 
 export interface IPData {
   ip: string;
@@ -28,7 +29,13 @@ function App() {
     });
 
     setData(response.data);
-    setLocation([response.data.location.lat, response.data.location.lng]);
+
+    const newLocation = [
+      response.data.location.lat,
+      response.data.location.lng,
+    ] as LatLngExpression;
+
+    setLocation(newLocation);
   };
 
   return (
@@ -41,9 +48,10 @@ function App() {
         </div>
         <div className="w-full h-screen sm:h-full">
           <MapContainer
-            zoom={17}
+            zoom={14}
             center={location}
             style={{ height: '100%', width: '100%', zIndex: 2 }}
+            scrollWheelZoom={false}
           >
             <TileLayer
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -51,8 +59,7 @@ function App() {
                 import.meta.env.VITE_MAPBOX_TOKEN
               }`}
             />
-
-            <Marker position={location} />
+            <MapMarker position={location} />
           </MapContainer>
         </div>
       </main>
