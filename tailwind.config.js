@@ -11,9 +11,6 @@ module.exports = {
       fontFamily: {
         rubik: ['Rubik', 'sans-serif'],
       },
-      backgroundImage: {
-        'location-pattern': 'url(src/assets/pattern-bg.png)',
-      },
     },
   },
   plugins: [],
